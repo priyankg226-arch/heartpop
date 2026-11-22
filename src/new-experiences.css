@@ -1,0 +1,532 @@
+/* Styles for Message in the Stars, Catch My Heart, Future Love Letter and Couple Bingo. */
+
+/* ───────────── Card art ───────────── */
+.stars-art {
+  width: 170px;
+  height: 120px;
+  border-radius: 16px;
+  background: radial-gradient(circle at 70% 20%, #4b3d7a, #241b3d 70%);
+  border: 5px solid white;
+  box-shadow: 6px 10px 0 #d8cae74d;
+  transform: rotate(-7deg);
+  position: relative;
+}
+.stars-art span {
+  position: absolute;
+  color: #ffe9a8;
+  font-size: 0.9rem;
+  animation: twinkle 2.4s ease-in-out infinite;
+}
+.stars-art span:nth-child(1) {
+  left: 16%;
+  top: 22%;
+}
+.stars-art span:nth-child(2) {
+  left: 44%;
+  top: 12%;
+  animation-delay: 0.4s;
+  font-size: 1.2rem;
+}
+.stars-art span:nth-child(3) {
+  left: 76%;
+  top: 30%;
+  animation-delay: 0.8s;
+}
+.stars-art span:nth-child(4) {
+  left: 30%;
+  top: 62%;
+  animation-delay: 1.2s;
+  font-size: 0.7rem;
+}
+.stars-art span:nth-child(5) {
+  left: 62%;
+  top: 66%;
+  animation-delay: 1.6s;
+}
+.stars-art b {
+  position: absolute;
+  right: 12px;
+  bottom: 6px;
+  color: #f6a8c4;
+  font-size: 1.4rem;
+}
+.hearts-art {
+  width: 160px;
+  height: 130px;
+  position: relative;
+}
+.hearts-art span {
+  position: absolute;
+  color: #e0638d;
+  font-size: 1.7rem;
+  animation: heart-drop 2.6s ease-in infinite;
+}
+.hearts-art span:nth-child(1) {
+  left: 14%;
+}
+.hearts-art span:nth-child(2) {
+  left: 46%;
+  animation-delay: 0.9s;
+  font-size: 1.3rem;
+}
+.hearts-art span:nth-child(3) {
+  left: 76%;
+  animation-delay: 1.7s;
+}
+.hearts-art b {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 38px);
+  width: 76px;
+  height: 30px;
+  border-radius: 6px 6px 22px 22px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f4b5c9 0 8px,
+    #eea0b8 8px 16px
+  );
+  border: 3px solid white;
+  box-shadow: 0 6px 0 #f0c3d24d;
+}
+.future-art {
+  background: #fffdfa;
+  padding: 22px 26px;
+  border-radius: 12px;
+  box-shadow: 6px 8px 0 #f0cfb0;
+  transform: rotate(-6deg);
+  text-align: center;
+}
+.future-art span {
+  font-size: 2.4rem;
+  display: block;
+}
+.future-art small {
+  font-weight: 800;
+  color: #9a6a4e;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+.bingo-art {
+  display: grid;
+  grid-template-columns: repeat(3, 32px);
+  gap: 5px;
+  padding: 10px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 6px 8px 0 #cbded0;
+  transform: rotate(6deg);
+  position: relative;
+}
+.bingo-art span {
+  height: 32px;
+  border-radius: 7px;
+  background: #eef6f0;
+  display: grid;
+  place-items: center;
+  color: #7aa08a;
+  font-weight: 800;
+}
+.bingo-art span.hit {
+  background: #f9d6e2;
+  color: #c24d77;
+}
+.bingo-art b {
+  position: absolute;
+  top: -14px;
+  right: -26px;
+  background: #c95481;
+  color: white;
+  font-size: 0.65rem;
+  padding: 4px 8px;
+  border-radius: 20px;
+  transform: rotate(10deg);
+  letter-spacing: 0.08em;
+}
+@keyframes twinkle {
+  50% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+}
+@keyframes heart-drop {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  80% {
+    top: 55%;
+    opacity: 1;
+  }
+  100% {
+    top: 60%;
+    opacity: 0;
+  }
+}
+
+/* ───────────── Message in the Stars ───────────── */
+.star-sky {
+  position: relative;
+  height: 300px;
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 80% 15%, #6b4f9a55, transparent 40%),
+    radial-gradient(circle at 15% 85%, #c0507a33, transparent 45%),
+    linear-gradient(180deg, #1f1838, #2f2453 60%, #3b2a5c);
+  box-shadow: inset 0 0 40px #0006;
+}
+.star-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.star-lines polyline {
+  fill: none;
+  stroke: #ffe9a8aa;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+  vector-effect: non-scaling-stroke;
+}
+.star {
+  position: absolute;
+  translate: -50% -50%;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff3c4;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-shadow: 0 0 10px #ffe9a8;
+  animation: twinkle 2.8s ease-in-out infinite;
+  transition:
+    color 0.3s,
+    font-size 0.3s;
+}
+.star:hover {
+  color: #fff;
+}
+.star[aria-pressed="true"] {
+  color: #ff9ec0;
+  font-size: 1.9rem;
+  text-shadow: 0 0 14px #ff9ec0;
+  animation: none;
+}
+.star:focus-visible {
+  outline: 2px solid #ffe9a8;
+  outline-offset: 0;
+}
+.star-note {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #ffffffeb;
+  color: #3d2b4f;
+  font-weight: 700;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.star-story {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 18px;
+  text-align: left;
+  color: #5b4470;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.star-story li + li {
+  margin-top: 6px;
+}
+
+/* ───────────── Catch My Heart ───────────── */
+.hearts-hud {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 800;
+  color: #8f4964;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+.heart-field {
+  position: relative;
+  height: 320px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff7fa, #fde3ec);
+  border: 1px solid #f1cbd8;
+  touch-action: none;
+  user-select: none;
+}
+.heart-field:focus-visible {
+  outline: 3px solid #8054b2;
+  outline-offset: 3px;
+}
+.falling-heart {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  color: #e0638d;
+  font-size: 1.7rem;
+  pointer-events: none;
+  text-shadow: 0 3px 6px #e0638d33;
+}
+.basket {
+  position: absolute;
+  bottom: 14px;
+  width: 22%;
+  height: 34px;
+  transform: translateX(-50%);
+  border-radius: 8px 8px 26px 26px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f4b5c9 0 10px,
+    #ec9bb5 10px 20px
+  );
+  border: 3px solid white;
+  box-shadow: 0 6px 14px #c0507a33;
+}
+.heart-start {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 20px;
+}
+.heart-start p {
+  font-weight: 700;
+  color: #5b3a4e;
+}
+.hearts-result {
+  font-weight: 800;
+  color: #a64268;
+}
+
+/* ───────────── Future Love Letter ───────────── */
+.future-peek {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #7a4a2c;
+  background: #fff3e6;
+  border: 1px dashed #e8b48c;
+  border-radius: 999px;
+  padding: 6px 14px;
+  display: inline-block;
+}
+.time-capsule {
+  background: #fffdfa;
+  border-radius: 18px;
+  padding: 30px 20px;
+  box-shadow: 0 10px 24px #8a5a3c14;
+}
+.time-capsule h2 {
+  font-size: 1.35rem;
+  margin-bottom: 6px;
+}
+.time-capsule p {
+  color: var(--muted);
+}
+.hourglass {
+  display: inline-block;
+  font-size: 2.6rem;
+  animation: hourglass 3s ease-in-out infinite;
+}
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.countdown span {
+  min-width: 66px;
+  padding: 10px 6px;
+  border-radius: 12px;
+  background: #fff0e3;
+  display: flex;
+  flex-direction: column;
+}
+.countdown strong {
+  font-size: 1.6rem;
+  color: #9a4a26;
+  font-variant-numeric: tabular-nums;
+}
+.countdown small {
+  font-size: 0.7rem;
+  color: #7a5a48;
+  font-weight: 700;
+}
+@keyframes hourglass {
+  0%,
+  40% {
+    transform: rotate(0);
+  }
+  50%,
+  90% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ───────────── Couple Bingo ───────────── */
+.bingo-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.bingo-cell {
+  aspect-ratio: 1;
+  border: 1px solid #d6e6db;
+  border-radius: 14px;
+  background: #fbfefc;
+  color: #3f4f45;
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  padding: 8px;
+  display: grid;
+  place-items: center;
+  overflow-wrap: anywhere;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    transform 0.15s;
+}
+.bingo-cell:hover {
+  border-color: #9fc6ad;
+}
+.bingo-cell:active {
+  transform: scale(0.96);
+}
+.bingo-cell[aria-pressed="true"] {
+  background: #fde7ee;
+  border-color: #e28eab;
+  color: #9a3658;
+}
+.bingo-cell.win {
+  background: #b8416c;
+  border-color: #b8416c;
+  color: white;
+}
+.bingo-shout {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: #b8416c;
+}
+
+/* ───────────── Creator editors ───────────── */
+.list-editor {
+  padding: 18px;
+  border: 1px solid #e7dce4;
+  border-radius: 12px;
+}
+.list-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.list-row input {
+  flex: 1;
+  min-width: 0;
+}
+.list-row + .list-row {
+  margin-top: 4px;
+}
+.list-mark {
+  color: #9b6cc6;
+  margin-top: 8px;
+}
+.list-editor > .button {
+  margin-top: 14px;
+}
+.bingo-editor {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.bingo-editor input {
+  font-size: 0.85rem;
+  padding: 10px;
+}
+.saved-letters {
+  border: 1px solid #f0d9c6;
+  background: #fffaf4;
+  border-radius: 13px;
+  padding: 16px 18px;
+  margin-top: 20px;
+  text-align: left;
+}
+.saved-letters h3 {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+.saved-letters ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+.saved-letters a {
+  color: #a64268;
+  font-weight: 700;
+}
+@media (max-width: 700px) {
+  .bingo-cell {
+    font-size: 0.7rem;
+    padding: 5px;
+    border-radius: 10px;
+  }
+  .bingo-editor {
+    grid-template-columns: 1fr;
+  }
+  .star-sky,
+  .heart-field {
+    height: 280px;
+  }
+}
+/* Share-with-friends buttons used by every game */
+.share-buttons {
+  max-width: 520px;
+  margin: 26px auto 0;
+  padding: 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  text-align: center;
+}
+.share-buttons .eyebrow {
+  margin-bottom: 10px;
+}
+.share-buttons-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.share-buttons-row > * {
+  flex: 1 1 130px;
+  gap: 8px;
+}
+.share-buttons-url {
+  font-size: 0.8rem !important;
+  color: var(--muted) !important;
+}
+.share-buttons .field-meta:empty {
+  display: none;
+}

@@ -1,0 +1,209 @@
+/* Grouped, evenly sized experience cards (overrides the older 6-column layout). */
+.experience-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+.group-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed #e7d3dd;
+}
+.group-heading h3 {
+  margin: 0 0 2px;
+  font-size: 1.35rem;
+}
+.group-heading p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.group-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  background: #fce4ed;
+  color: #c0507a;
+  transform: rotate(-6deg);
+}
+.games .group-icon {
+  background: #ece3fb;
+  color: #7650b0;
+  transform: rotate(6deg);
+}
+.group-count {
+  margin-left: auto;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #8f4964;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.experience-card,
+.experience-card:nth-child(n + 4) {
+  grid-column: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  box-shadow: 0 4px 14px #683c5a08;
+}
+.experience-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px #683c5a14;
+}
+.experience-card .card-art {
+  height: 190px;
+  min-height: 0;
+}
+.experience-card .card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 22px 18px;
+}
+.experience-card .card-content p {
+  max-width: none;
+  min-height: 0;
+  margin-bottom: 0;
+}
+.experience-card .card-link {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid #f3e8ed;
+}
+.experience-card .card-content h3 {
+  margin-top: 0;
+}
+.experience-card .card-content p + .card-link {
+  margin-top: auto;
+}
+/* Space between description and the link even when content is short. */
+.experience-card .card-content p {
+  padding-bottom: 16px;
+}
+
+@media (max-width: 1050px) {
+  .experience-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (max-width: 700px) {
+  .experience-groups {
+    gap: 40px;
+  }
+  .group-heading {
+    gap: 12px;
+  }
+  .group-heading h3 {
+    font-size: 1.15rem;
+  }
+  .group-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.15rem;
+  }
+  .experience-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  /* Compact horizontal cards on phones. */
+  .experience-card,
+  .experience-card:nth-child(n + 4) {
+    display: grid;
+    grid-template-columns: 38% 62%;
+  }
+  .experience-card .card-art {
+    height: 100%;
+    min-height: 170px;
+  }
+  .experience-card .card-content {
+    padding: 18px 16px 14px;
+  }
+  .experience-card .card-content p {
+    padding-bottom: 10px;
+  }
+  .experience-card .card-link {
+    padding-top: 10px;
+  }
+  /* Keep the CSS card art inside the narrow art column. */
+  .experience-card .mini-scene > * {
+    scale: 0.78;
+  }
+}
+
+/* ───────────── Home link + back to top ───────────── */
+.nav-links a.nav-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-links a.nav-home svg {
+  color: var(--pink);
+}
+.back-to-top {
+  position: fixed;
+  right: 22px;
+  bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: linear-gradient(145deg, #e0638d, #b9325d);
+  box-shadow: 0 10px 22px #b9325d40;
+  opacity: 0;
+  translate: 0 16px;
+  scale: 0.85;
+  pointer-events: none;
+  transition:
+    opacity 0.25s,
+    translate 0.25s,
+    scale 0.25s,
+    box-shadow 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  translate: 0 -3px;
+  box-shadow: 0 14px 26px #b9325d55;
+}
+.back-to-top:focus-visible {
+  outline: 3px solid #8054b2;
+  outline-offset: 3px;
+}
+@media (max-width: 700px) {
+  .back-to-top {
+    right: 16px;
+    width: 46px;
+    height: 46px;
+  }
+}
