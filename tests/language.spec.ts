@@ -48,7 +48,8 @@ test("editor translates templates and category choices but preserves personal wr
   await page.goto("/#/create/message");
   await pickLanguage(page, "hi");
   await expect(page.getByLabel("आपका संदेश")).toHaveValue(/तुम्हारे/);
-  await page.getByLabel("श्रेणी चुनें").selectOption("Birthday");
+  await page.getByLabel("श्रेणी चुनें").click();
+  await page.locator('.select-menu [data-value="Birthday"]').click();
   await expect(page.getByLabel("आपका संदेश")).toHaveValue(/जन्मदिन/);
   await pickLanguage(page, "gu");
   await expect(page.getByLabel("તમારો સંદેશ")).toHaveValue(/જન્મદિવસ/);

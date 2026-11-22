@@ -134,7 +134,7 @@
   position: absolute;
   top: -14px;
   right: -26px;
-  background: #c95481;
+  background: #ad3d68;
   color: white;
   font-size: 0.65rem;
   padding: 4px 8px;
@@ -146,6 +146,13 @@
   50% {
     opacity: 0.35;
     transform: scale(0.8);
+  }
+}
+/* Glow only: the tap target keeps a fixed size. */
+@keyframes star-twinkle {
+  50% {
+    opacity: 0.45;
+    text-shadow: 0 0 2px #ffe9a8;
   }
 }
 @keyframes heart-drop {
@@ -203,7 +210,7 @@
   font-size: 1.5rem;
   line-height: 1;
   text-shadow: 0 0 10px #ffe9a8;
-  animation: twinkle 2.8s ease-in-out infinite;
+  animation: star-twinkle 2.8s ease-in-out infinite;
   transition:
     color 0.3s,
     font-size 0.3s;
@@ -383,11 +390,13 @@
 /* ───────────── Couple Bingo ───────────── */
 .bingo-board {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
   margin-bottom: 14px;
 }
 .bingo-cell {
+  min-width: 0;
+  overflow-wrap: anywhere;
   aspect-ratio: 1;
   border: 1px solid #d6e6db;
   border-radius: 14px;
@@ -457,10 +466,11 @@
 }
 .bingo-editor {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
 .bingo-editor input {
+  min-width: 0;
   font-size: 0.85rem;
   padding: 10px;
 }

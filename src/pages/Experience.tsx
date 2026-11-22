@@ -6,6 +6,7 @@ import { useLanguage } from "../app";
 import { categories, template, tones } from "../i18n";
 import { bingoDefaults, starDefaults } from "../i18n/newExperiences";
 import { translate } from "../i18n/ui";
+import { SelectMenu } from "../components/SelectMenu";
 import {
   decodePayload,
   encodePayload,
@@ -343,21 +344,20 @@ function Creator({ kind }: { kind: Payload["kind"] }) {
               />
             </label>
           </div>
-          <label>
-            <I18nText
-              text={kind === "envelope" ? "Open when…" : "Choose a category"}
-            />
-            <select
-              value={data.category}
-              onChange={(e) => update("category", e.target.value)}
-            >
-              {categories[kind].map((c) => (
-                <option key={c} value={c}>
-                  <I18nText text={c} />
-                </option>
-              ))}
-            </select>
-          </label>
+          <SelectMenu
+            className="form-select"
+            label={
+              <I18nText
+                text={kind === "envelope" ? "Open when…" : "Choose a category"}
+              />
+            }
+            value={data.category}
+            options={categories[kind].map((c) => ({
+              value: c,
+              label: <I18nText text={c} />,
+            }))}
+            onChange={(c) => update("category", c)}
+          />
           {kind !== "quiz" && (
             <>
               <fieldset>

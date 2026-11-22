@@ -36,6 +36,8 @@ import { LanguageMenu } from "./components/LanguageMenu";
 import { useScrollReveal } from "./lib/scrollReveal";
 const Experience = lazy(() => import("./pages/Experience"));
 const Roulette = lazy(() => import("./pages/Roulette"));
+const CoupleGamesHub = lazy(() => import("./features/couple-games/CoupleGamesHub"));
+const CoupleGameRoute = lazy(() => import("./features/couple-games/CoupleGameRoute"));
 export const experiences = [
   {
     kind: "envelope",
@@ -164,6 +166,10 @@ function Navbar() {
         <NavLink to="/roulette">
           {" "}
           <I18nText text={"Fun & games"} />{" "}
+        </NavLink>
+        <NavLink to="/couple-games">
+          {" "}
+          <I18nText text={"Couple games"} />{" "}
         </NavLink>
         <NavLink to="/about">
           {" "}
@@ -741,6 +747,8 @@ export default function App() {
                     element={<Experience mode="results" />}
                   />
                   <Route path="/roulette" element={<Roulette />} />
+                  <Route path="/couple-games" element={<CoupleGamesHub />} />
+                  <Route path="/couple-games/:gameId/*" element={<CoupleGameRoute />} />
                   {["about", "privacy", "terms"].map((page) => (
                     <Route
                       key={page}

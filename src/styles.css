@@ -145,61 +145,79 @@ svg {
   gap: 22px;
   align-items: center;
 }
-.language-control {
+/* Dropdown shared by the language picker and every in-form choice (SelectMenu). */
+.select-control {
   position: relative;
-  font-size: 0.85rem;
-  font-weight: 700;
+  min-width: 0;
   color: #34243a;
 }
-.language-trigger {
-  display: inline-flex;
+.select-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.select-trigger {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  height: 42px;
-  min-width: 132px;
-  padding: 0 13px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid #ded1db;
+  border-radius: 14px;
   background: #fff;
   color: inherit;
+  font-size: 1rem;
   font-weight: 700;
-  white-space: nowrap;
+  text-align: left;
   box-shadow: 0 4px 12px #bb52750f;
   transition:
     border-color 0.2s,
     background 0.2s,
     box-shadow 0.2s;
 }
-.language-trigger > svg {
+.select-trigger > svg {
+  flex-shrink: 0;
   color: var(--pink);
 }
-.language-current {
+.select-current {
   flex: 1;
-  text-align: left;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.language-chevron {
+.select-chevron {
   transition: transform 0.2s;
 }
-.language-trigger:hover,
-.language-control.open .language-trigger {
+/* Long labels truncate instead of widening the form. */
+.select-trigger:not(.language-trigger) .select-current {
+  contain: inline-size;
+}
+.select-trigger:hover,
+.select-control.open .select-trigger {
   border-color: #e7b3c5;
   background: #fff5f8;
 }
-.language-trigger:focus-visible {
+.select-trigger:focus-visible {
   outline: none;
   border-color: var(--pink);
   box-shadow: 0 0 0 3px #ca3f6c33;
 }
-.language-control.open .language-chevron {
+.select-control.open .select-chevron {
   transform: rotate(180deg);
 }
-.language-menu {
+.select-menu {
   position: absolute;
   top: calc(100% + 8px);
-  right: 0;
+  left: 0;
   z-index: 30;
   min-width: 100%;
   width: max-content;
+  max-width: min(360px, calc(100vw - 32px));
+  max-height: min(320px, 60vh);
+  overflow-y: auto;
   margin: 0;
   padding: 6px;
   list-style: none;
@@ -208,12 +226,13 @@ svg {
   border-radius: 16px;
   box-shadow: 0 16px 36px #6f456526;
   animation: language-pop 0.16s ease-out;
-  transform-origin: top right;
+  transform-origin: top left;
+  font-size: 0.95rem;
 }
-.language-menu:focus {
+.select-menu:focus {
   outline: none;
 }
-.language-menu li {
+.select-menu li {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -223,14 +242,19 @@ svg {
   cursor: pointer;
   font-weight: 600;
   line-height: 1.4;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
-.language-menu li.active {
+.select-menu li > svg {
+  flex-shrink: 0;
+}
+.select-menu li.active {
   background: #fff1f5;
 }
-.language-menu li[aria-selected="true"] {
+.select-menu li[aria-selected="true"] {
   background: #fde7ee;
-  color: var(--pink);
+  color: #9a3658;
   font-weight: 800;
 }
 @keyframes language-pop {
@@ -240,9 +264,34 @@ svg {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .language-menu {
+  .select-menu {
     animation: none;
   }
+}
+/* Navbar language pill */
+.language-control {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.language-trigger {
+  display: inline-flex;
+  gap: 8px;
+  width: auto;
+  height: 42px;
+  min-height: 0;
+  min-width: 132px;
+  padding: 0 13px;
+  border-color: var(--line);
+  border-radius: 999px;
+  font-size: inherit;
+  white-space: nowrap;
+}
+.language-menu {
+  left: auto;
+  right: 0;
+  transform-origin: top right;
+  max-height: none;
+  font-size: inherit;
 }
 .button {
   border: 1px solid transparent;
@@ -891,6 +940,7 @@ textarea {
   gap: 16px;
 }
 .form-card > label,
+.form-card > .select-control,
 .form-card > fieldset {
   margin-top: 23px;
 }
@@ -919,11 +969,31 @@ legend {
   color: #725467;
   font-weight: 700;
 }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s;
+}
+.chip:hover {
+  border-color: #e7b3c5;
+  background: #fff5f8;
+}
+/* Selected state mirrors the language menu: pink tint + check. */
 .chip.selected,
 .chip[aria-pressed="true"] {
-  background: #fce6ee;
-  border-color: #d882a1;
+  background: #fde7ee;
+  border-color: #e7a3bb;
   color: #9a3658;
+  font-weight: 800;
+}
+.chip.selected::before,
+.chip[aria-pressed="true"]::before {
+  content: "✓";
+  font-weight: 800;
 }
 .field-meta {
   display: block;
@@ -1678,7 +1748,7 @@ legend {
     font-size: 0.9rem;
   }
   .creator-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 28px;
   }
   .form-card {
@@ -1880,6 +1950,16 @@ html:lang(gu) .eyebrow {
 }
 .form-row label {
   min-width: 0;
+}
+/* Keep side-by-side inputs level even when one label wraps (long names, Hindi/Gujarati). */
+.form-row {
+  align-items: end;
+}
+@media (max-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
 }
 @media (max-width: 1150px) {
   .nav-actions > .button {

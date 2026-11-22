@@ -207,3 +207,15 @@
     height: 46px;
   }
 }
+
+/* Name fields: keep inputs level even when one label wraps (long names, Hindi/Gujarati),
+   and stack them on small phones so labels are never squeezed. */
+.form-row {
+  align-items: end;
+}
+@media (max-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}

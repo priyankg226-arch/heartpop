@@ -36,6 +36,16 @@ The Playwright configurations automatically select the correct npm executable fo
 - Hash routes work on static hosting and preserve the payload across devices. No localStorage dependency for recipients. Answers are included in quiz links: this is a friendly game, not tamper-proof testing.
 - A generated Workbox service worker precaches app routes, feature chunks, fonts, and icons for offline access after the first successful online load. New workers wait for old tabs to close before activation to reduce mixed-version problems. Manifest includes 192px and 512px PNG icons. Installation requires HTTPS (or localhost) and browser support.
 
+## Couple Games (`/#/couple-games`)
+
+Eight couple games live in `src/features/couple-games/`: Guess My Feelings, Love Memory Match, You vs Me, Our Dream Date, Love Truth or Dare, Fix Our Heart, Send Me a Hug and Find My Love. Each game is a lazily loaded chunk registered in `registry.ts`.
+
+- **Same-device play:** turn-taking with pass-the-device screens; private answers stay hidden until the reveal.
+- **Challenge links:** `#/couple-games/<game>/open/<token>`. Tokens are versioned, Zod-validated, size-capped (12,000 chars) and deflate-compressed when the browser supports it. A "Download as a file" option covers anything too large for a link. Links are **encoded, not encrypted** (treasure-hunt and You vs Me answers can be read from the link). Results are not sent back automatically.
+- **Local data:** IndexedDB (memory fallback) for favourites, recently played, resumable sessions, treasure-hunt drafts and custom truth-or-dare cards. Clear it from the hub.
+- **Not included:** the two drawing games (Sketch My Love, Complete Our Heart) were left out of this release. There is no live multiplayer or server.
+- Hub and common game labels are translated into all five languages; the rest of the game text (prompts, questions) is still English only.
+
 ## Privacy and security
 
 Surprises are encoded, **not encrypted**. Anyone with a URL can decode it; links can be forwarded or recorded in history, clipboard managers, or screenshots. There is no remote revocation. Do not include sensitive information. No account, trackers, uploads, analytics, or message database. Reactions stay on the recipient’s screen and are not delivered to the sender.

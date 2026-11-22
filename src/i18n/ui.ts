@@ -2,6 +2,7 @@ import type { Language } from "./index";
 import { homeRows } from "./home";
 import { experienceRows } from "./experience";
 import { newExperienceRows } from "./newExperiences";
+import { coupleGameRows } from "../features/couple-games/i18n";
 // Stable English keys keep existing v1 links and category identifiers compatible.
 const rows: [string, string, string, string, string][] = [
   [
@@ -818,7 +819,7 @@ const rows: [string, string, string, string, string][] = [
   ],
 ];
 export const uiCatalog = Object.fromEntries(
-  [...rows, ...homeRows, ...experienceRows, ...newExperienceRows].map(
+  [...rows, ...homeRows, ...experienceRows, ...newExperienceRows, ...coupleGameRows].map(
     ([en, hi, gu, hinglish, roman]) => [
       en,
       { en, hi, gu, hinglish, "roman-gu": roman },
